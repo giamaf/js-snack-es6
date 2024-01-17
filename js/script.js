@@ -46,7 +46,7 @@ const guestsList = guests.map((guest, index) => {
     return {
         table: tableName,
         guestName: guest,
-        seatNumber: ++index
+        seatNumber: index + 1
     }
 
 });
@@ -138,19 +138,86 @@ const studentsElement = document.querySelector('.students');
 
 // Creo gli elementi
 const maxGrade = 100;
-let studentList = '';
 
-students.forEach((student) => {
-    studentList += `
-
-<ul class="list-group m-3">
+const items = students.reduce((result, student) => {
+    return result + `
+<ul class="list-group m-2">
     <li class="list-group-item">Studente:<strong> ${student.name}</strong></li>
     <li class="list-group-item">ID: ${student.id}</li>
     <li class="list-group-item">Somma voti:<strong> ${student.grades}</strong>/${maxGrade}</li>
 </ul>`
 
-});
+}, '');
 
 // Stampo in pagina la lista degli studenti
+studentsElement.innerHTML = items;
 
-studentsElement.innerHTML = studentList;
+//! -------------------------------------------------------------------------------------
+//! SNACK 3
+//! -------------------------------------------------------------------------------------
+
+// Creare un array di oggetti:
+// Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: name e peso.
+// Stampare in console la bici con peso minore utilizzando il destructuring
+
+// Creo un array di oggetti
+const cycles = [
+    {
+        cycleName: 'Bianchi Oltre XR4',
+        weight: 10.2,
+    },
+    {
+        cycleName: 'Specialized Tarmac SL7',
+        weight: 3.7
+    },
+    {
+        cycleName: 'Trek Madone SLR 9',
+        weight: 2.3
+    },
+    {
+        cycleName: 'Cervelo S5',
+        weight: 8.5
+    },]
+
+console.log(cycles);
+
+// Stampare in console la bici con peso minore utilizzando il destructuring
+
+// Cerco l'oggetto bici con il peso minore sfruttando il destructuring e il metodo reduce
+const { cycleName, weight } = cycles.reduce((acc, cycle) => (cycle['weight'] < acc['weight'] ? cycle : acc), cycles[0]);
+
+// Stampo in console il risultato dell'iterazione precedente
+console.log(`${cycleName} is the lighter cycle with ${weight}kg`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! -------------------------------------------------------------------------------------
+//! SNACK 4
+//! -------------------------------------------------------------------------------------
+
+// Creare un array di oggetti di squadre di calcio.
+// Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
+// nome sarà l’unica proprietà da inventare voi, le altre saranno tutte settate a 0.
+// Generare numeri random al posto degli 0 nelle proprietà punti fatti e falli subiti.
+// Infine, usando il destructuring, creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console
+
