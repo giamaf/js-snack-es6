@@ -189,28 +189,6 @@ const { cycleName, weight } = cycles.reduce((acc, cycle) => (cycle['weight'] < a
 // Stampo in console il risultato dell'iterazione precedente
 console.log(`${cycleName} is the lighter cycle with ${weight}kg`);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //! -------------------------------------------------------------------------------------
 //! SNACK 4
 //! -------------------------------------------------------------------------------------
@@ -221,3 +199,59 @@ console.log(`${cycleName} is the lighter cycle with ${weight}kg`);
 // Generare numeri random al posto degli 0 nelle proprietà punti fatti e falli subiti.
 // Infine, usando il destructuring, creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console
 
+// Creo un array di oggetti di squadre di calcio con proprietà: nome, punti fatti (0) e falli subiti (0)
+const teams = [
+    {
+        teamName: 'Napoli',
+        points: 0,
+        drawnFouls: 0
+    },
+    {
+        teamName: 'Manchester City',
+        points: 0,
+        drawnFouls: 0
+    },
+    {
+        teamName: 'PSG',
+        points: 0,
+        drawnFouls: 0
+    },
+    {
+        teamName: 'Real Madrid',
+        points: 0,
+        drawnFouls: 0
+    },
+    {
+        teamName: 'Bayern Monaco',
+        points: 0,
+        drawnFouls: 0
+    },
+]
+
+console.log('Array originale: ', teams);
+
+// Variabili utili
+const maxPoints = 100;
+const maxFouls = 30;
+
+// Funzione per generare un numero random compreso 0
+const getRandomNumber = ((max) => {
+    const randomNumber = Math.floor(Math.random() * (max + 1));
+    return randomNumber;
+});
+
+// Genero un array identico all'originale
+const completeTeams = teams.map(team => ({ ...team }));
+console.log('Copia array originale: ', completeTeams);
+
+// Genero numeri random al posto degli 0 nelle proprietà punti fatti e falli subiti.
+completeTeams.forEach((team) => {
+    team['points'] = getRandomNumber(maxPoints);
+    team['drawnFouls'] = getRandomNumber(maxFouls);
+});
+
+console.log('Array completo: ', completeTeams);
+
+// Infine, usando il destructuring, creo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampo tutto in console
+const newTeamsArray = completeTeams.map(({ teamName, drawnFouls }) => ({ teamName, drawnFouls }));
+console.log(newTeamsArray);
